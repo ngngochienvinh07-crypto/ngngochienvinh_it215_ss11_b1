@@ -1,21 +1,18 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL = "mysql+pymysql://root:17102007@localhost/parking_db"
+DB_URL = "mysql+pymysql://root:21072007@localhost:3306/parking_db"
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DB_URL)
 
-SessionLocal = sessionmaker(
-    autocommit=False,
+LocalSession = sessionmaker(
     autoflush=False,
-    bind=engine
+    bind=engine,
+    expire_on_commit=False
 )
 
-Base = declarative_base()
-
-
 def get_db():
-    db = SessionLocal()
+    db = LocalSession()
     try:
         yield db
     finally:
