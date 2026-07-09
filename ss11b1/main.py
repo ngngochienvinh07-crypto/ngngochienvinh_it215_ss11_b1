@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 from database import get_db
-from parking_slot_service import get_all_parking_slots_service, get_parking_slot_by_id_service, create_parking_slot_service
+from service import get_all_parking_slots_service, get_parking_slot_by_id_service, create_parking_slot_service
 from schemas import CreateParkingSlot
 
 app = FastAPI()
